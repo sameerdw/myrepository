@@ -1,26 +1,25 @@
 #!/usr/bin/env bash
-# File: guessinggame.sh
 
-m_file_count=$(ls | wc -w)
-m_loop=true
+count=$(ls | wc -w)
+loop=true
 
-function m_interaction {
+function ask {
     echo $1
     read response
 }
 
-m_interaction "Type in a guess at the number of files contained in current directory and then press Enter:"
+ask "Type in a guess at the number of files contained in current directory and then press Enter:"
 
-while $m_loop
+while $loop
 do
-    if [[ $response -lt $m_file_count ]]
+    if [[ $response -lt $count ]]
     then
-	m_interaction "Your guess is too low, please type another guess at number of files and then press Enter:"
-    elif [[ $response -gt $m_file_count ]]
+	ask "Your guess is too low, please type another guess at number of files and then press Enter:"
+    elif [[ $response -gt $count ]]
     then
-	m_interaction "Your guess is too high, please type another guess at number of files and then press Enter:"
+	ask "Your guess is too high, please type another guess at number of files and then press Enter:"
     else
 	echo "Congratulations on guessing correctly!"
-	m_loop=false
+	loop=false
     fi
 done
